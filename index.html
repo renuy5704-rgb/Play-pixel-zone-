@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pixel Play Zone</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    color:white;
+    text-align:center;
+    background:
+    radial-gradient(circle at 50% 20%, #4b0000 0%, #180000 35%, #000 75%);
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 40%, rgba(255,255,255,.06), transparent 30%),
+    radial-gradient(circle at 80% 60%, rgba(255,255,255,.04), transparent 30%);
+    animation:fog 8s infinite alternate;
+    pointer-events:none;
+}
+
+@keyframes fog{
+    from{
+        transform:translateX(-20px);
+    }
+    to{
+        transform:translateX(20px);
+    }
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    width:90%;
+    max-width:650px;
+    margin:auto;
+    padding:35px 0 30px;
+}
+
+.skull{
+    font-size:65px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.12);
+    }
+}
+
+h1{
+    font-size:42px;
+    margin-top:10px;
+    color:#ff2020;
+    text-shadow:0 0 10px red,0 0 25px darkred;
+}
+
+.subtitle{
+    margin-top:10px;
+    margin-bottom:30px;
+    color:#ddd;
+    font-size:16px;
+}
+
+.sound-btn{
+    border:2px solid #ff2020;
+    background:#120000;
+    color:white;
+    padding:12px 22px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    margin-bottom:25px;
+    box-shadow:0 0 15px rgba(255,0,0,.4);
+}
+
+.game{
+    display:block;
+    text-decoration:none;
+    color:white;
+    background:rgba(20,0,0,.85);
+    border:2px solid #8b0000;
+    border-radius:18px;
+    padding:20px;
+    margin:18px 0;
+    box-shadow:0 0 15px rgba(255,0,0,.25);
+    transition:.3s;
+}
+
+.game:hover{
+    transform:scale(1.03);
+    border-color:red;
+    box-shadow:0 0 25px red;
+}
+
+.game-icon{
+    font-size:45px;
+}
+
+.game-name{
+    font-size:24px;
+    font-weight:bold;
+    color:#ff3333;
+    margin:8px 0;
+}
+
+.play{
+    display:inline-block;
+    background:#b00000;
+    padding:10px 20px;
+    border-radius:20px;
+    margin-top:8px;
+    font-weight:bold;
+}
+
+.footer{
+    margin-top:30px;
+    color:#777;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HORROR MUSIC -->
+<audio id="horrorMusic" loop>
+    <source src="horror.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+    <div class="skull">💀</div>
+
+    <h1>PIXEL PLAY ZONE</h1>
+
+    <p class="subtitle">
+        ENTER IF YOU DARE... 👻
+    </p>
+
+    <button class="sound-btn" onclick="toggleSound()">
+        🔊 SOUND ON
+    </button>
+
+    <!-- TIC TAC TOE -->
+    <a class="game"
+       href="https://renuy5704-rgb.github.io/Tuc-tac-toe/"
+       target="_blank">
+
+        <div class="game-icon">🎮</div>
+
+        <div class="game-name">
+            TIC-TAC-TOE
+        </div>
+
+        <div class="play">
+            ▶ PLAY NOW
+        </div>
+
+    </a>
+
+    <!-- FEED SNAKE -->
+    <a class="game"
+       href="https://renuy5704-rgb.github.io/Feedsnake/"
+       target="_blank">
+
+        <div class="game-icon">🐍</div>
+
+        <div class="game-name">
+            FEED SNAKE
+        </div>
+
+        <div class="play">
+            ▶ PLAY NOW
+        </div>
+
+    </a>
+
+    <!-- MINDFORGE X -->
+    <a class="game"
+       href="https://renuy5704-rgb.github.io/MindForgex/"
+       target="_blank">
+
+        <div class="game-icon">🧠</div>
+
+        <div class="game-name">
+            MINDFORGE X
+        </div>
+
+        <div class="play">
+            ▶ PLAY NOW
+        </div>
+
+    </a>
+
+    <div class="footer">
+        ☠ PIXEL PLAY ZONE ☠
+    </div>
+
+</div>
+
+<script>
+
+let music = document.getElementById("horrorMusic");
+let playing = false;
+
+function toggleSound(){
+
+    if(!playing){
+
+        music.play().then(function(){
+
+            playing = true;
+
+            document.querySelector(".sound-btn").innerHTML =
+            "🔊 SOUND ON";
+
+        }).catch(function(){
+
+            alert("Sound start nahi hua. Dobara SOUND ON dabao.");
+
+        });
+
+    }else{
+
+        music.pause();
+
+        playing = false;
+
+        document.querySelector(".sound-btn").innerHTML =
+        "🔇 SOUND OFF";
+    }
+}
+
+</script>
+
+</body>
+  </html>
